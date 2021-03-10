@@ -1,4 +1,4 @@
-all: test_complexe2 test_complexe test_dot test_dot_dyn test_swap test_copy test_amax
+all: test_asum
 
 INC_DIR=../include
 
@@ -53,6 +53,12 @@ test_amax.o: test_amax.c $(INC_DIR)/mnblas.h
 
 test_amax: test_amax.o $(LIB_DIR)/libmnblas.a
 	gcc -o test_amax test_amax.o  $(OPTIONS_LINK_STATIC)
+
+test_asum.o: test_asum.c $(INC_DIR)/mnblas.h
+	gcc $(OPTIONS_COMPIL) -c test_asum.c
+
+test_asum: test_asum.o $(LIB_DIR)/libmnblas.a
+	gcc -o test_asum test_asum.o  $(OPTIONS_LINK_STATIC)
 
 
 clean:
