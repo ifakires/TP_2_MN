@@ -48,7 +48,7 @@ void cblas_zaxpy (const int n, const void *a, const void *x, const int incx, voi
 
     for (i = 0 ; i < n ; i += incx)
     {
-      ((complexe_double_t*)y) [j] = add_complexe_double( mult_complexe_double( (*(complexe_double_t*)a) ,((complexe_double_t*)x) [i]), ((complexe_double_t*)y) [j]) ;
+      ((complexe_double_t*)y) [j]   = add_complexe_double( mult_complexe_double( (*(complexe_double_t*)a) ,((complexe_double_t*)x) [i]), ((complexe_double_t*)y) [j]) ;
       j+=incy ;
     }
     return;

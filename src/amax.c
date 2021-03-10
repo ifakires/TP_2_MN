@@ -2,6 +2,29 @@
 #include <stdio.h>
 #include "complexe.h"
 
+float abs_f2(float x){
+    if(x < 0){
+        return -x;
+    }
+    else{return x;}
+}
+double abs_d2(double x){
+    if(x < 0){
+        return -x;
+    }
+    else{return x;}
+}
+
+float asum_absf2(complexe_float_t x){
+    return abs_f2(x.real)+abs_f2(x.imaginary);
+}
+double asum_absd2(complexe_double_t x){
+    return abs_d2(x.real)+abs_d2(x.imaginary);
+}
+
+
+
+
 
 int cblas_isamax (const int n, const float *x, const int incx)
 {
@@ -77,13 +100,13 @@ int cblas_icamax (const int n, const void *x, const int incx)
             return i;
         }
         */
-        if(sum_absf(((complexe_float_t*)x) [i]) > max){
-            max = sum_absf(((complexe_float_t*)x) [i]);
+        if(asum_absf2(((complexe_float_t*)x) [i]) > max){
+            max = asum_absf2(((complexe_float_t*)x) [i]);
         }
     }
 
     for(j = 0; j < n; j += incx){
-        if(sum_absf(((complexe_float_t*)x) [j]) == max){
+        if(asum_absf2(((complexe_float_t*)x) [j]) == max){
            return j;
         }
     }
@@ -107,13 +130,13 @@ int cblas_izamax (const int n, const void *x, const int incx)
             return i;
         }
         */
-        if(sum_absd( ((complexe_double_t*)x) [i]) > max){
-            max = sum_absd(((complexe_double_t*)x) [i]);
+        if(asum_absd2( ((complexe_double_t*)x) [i]) > max){
+            max = asum_absd2(((complexe_double_t*)x) [i]);
         }
     }
 
     for(j = 0; j < n; j += incx){
-        if(sum_absd( ((complexe_double_t*)x) [i] ) == max){
+        if(asum_absd2( ((complexe_double_t*)x) [i] ) == max){
            return j;
         }
     }

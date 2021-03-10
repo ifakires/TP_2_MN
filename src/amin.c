@@ -88,7 +88,7 @@ int cblas_icamin (const int n, const void *x, const int incx)
 
     register unsigned int i = 0 ;
     register unsigned int j = 0 ;
-    float min = -1;
+    float min = sum_absf1(((complexe_float_t*)x) [0]);
 
     for(i = 0; i < n; i += incx){
         /*

@@ -10,6 +10,7 @@
 typedef float vfloat [VECSIZE] ;
 typedef complexe_float_t vfloat_complexe [VECSIZE] ;
 vfloat vec1, vec2 ;
+const vfloat a ;
 vfloat_complexe vec3, vec4 ;
 
 void vector_init (vfloat V, float x)
@@ -49,14 +50,15 @@ int main(){
 
     vector_init_complexe (vec3, 1.0) ;
     vector_init_complexe (vec4, 2.0) ;
+    vector_init_complexe (a, 3.0) ;
 
     printf("Affichage des deux vecteurs : \n");
-    vector_print_complexe(vec3);
     vector_print_complexe(vec4);
-    mncblas_ccopy(VECSIZE,vec3,1,vec4,1);
-    printf("Affichage des deux vecteurs apres la copie : \n");
     vector_print_complexe(vec3);
+    cblas_caxpy(VECSIZE,a,vec3,1,vec4,1);
+    printf("Affichage du deuxieme vecteur apres l'opération : \n");
     vector_print_complexe(vec4);
+    
 
 
 }

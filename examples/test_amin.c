@@ -26,10 +26,16 @@ void vector_init_complexe (vfloat_complexe V, float x)
 {
   register unsigned int i ;
 
-  for (i = 0; i < VECSIZE; i++){
-    V [i].real = x ;
-    V [i].imaginary = x ;
-  }
+  
+    V [0].real = 3 ;
+    V [0].imaginary = 3 ;
+
+    V [1].real = 2 ;
+    V [1].imaginary = 2 ;
+
+    V [2].real = 1 ;
+    V [2].imaginary = 1 ;
+  
 
   return ;
 }
@@ -48,15 +54,7 @@ void vector_print_complexe (vfloat_complexe V)
 int main(){
 
     vector_init_complexe (vec3, 1.0) ;
-    vector_init_complexe (vec4, 2.0) ;
-
-    printf("Affichage des deux vecteurs : \n");
+    
     vector_print_complexe(vec3);
-    vector_print_complexe(vec4);
-    mncblas_ccopy(VECSIZE,vec3,1,vec4,1);
-    printf("Affichage des deux vecteurs apres la copie : \n");
-    vector_print_complexe(vec3);
-    vector_print_complexe(vec4);
-
-
+    printf("Le min se trouve a la position : %d",cblas_icamin(VECSIZE,vec3,1));
 }
