@@ -1,4 +1,4 @@
-all: test_asum
+all: test_nrm2
 
 INC_DIR=../include
 
@@ -60,6 +60,12 @@ test_asum.o: test_asum.c $(INC_DIR)/mnblas.h
 test_asum: test_asum.o $(LIB_DIR)/libmnblas.a
 	gcc -o test_asum test_asum.o  $(OPTIONS_LINK_STATIC)
 
+test_nrm2.o: test_nrm2.c $(INC_DIR)/mnblas.h
+	gcc $(OPTIONS_COMPIL) -c test_nrm2.c -lm
+
+test_nrm2: test_nrm2.o $(LIB_DIR)/libmnblas.a
+	gcc -o test_nrm2 test_nrm2.o  $(OPTIONS_LINK_STATIC) -lm
+
 
 clean:
-	rm -f *.o test_dot test_dot_dyn test_complexe test_complexe2 *~
+	rm -f *.o test_dot test_dot_dyn test_complexe test_complexe2 test_swap test_copy test_amax test_asum test_nrm2 *~
